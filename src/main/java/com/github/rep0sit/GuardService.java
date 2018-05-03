@@ -12,6 +12,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
@@ -55,17 +56,16 @@ public class GuardService {
 	
 	@POST
 	@Path("/login")
-//	@Produces(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.TEXT_HTML)
 	public String login(
 			@Context HttpHeaders httpHeaders,
-			@FormParam("email") String email,
-			@FormParam("password") String password){
+			@QueryParam("email") String email,
+			@QueryParam("password") String password){
 //		if(gd.login(email, password).equals("SUCCESS_RESULT")){
 //			return Response.accepted().build();
 //		}
 //		return Response.; //Verweis auf eine html-Seite
-
 		return gd.login(email, password);
 	}
 
