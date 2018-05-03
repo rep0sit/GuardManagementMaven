@@ -13,7 +13,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/GuardService")
 public class GuardService {
@@ -51,21 +53,33 @@ public class GuardService {
 		return FAILURE_RESULT;
 	}
 	
-//	@POST
-//	@Path("/guards")
+	@POST
+	@Path("/login")
 //	@Produces(MediaType.APPLICATION_JSON)
-//	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-//	public postLogin(String email, String password){
-//		
-//	}
-	
+	@Produces(MediaType.TEXT_PLAIN)
+	public String login(
+			@Context HttpHeaders httpHeaders,
+			@FormParam("email") String email,
+			@FormParam("password") String password){
+//		if(gd.login(email, password).equals("SUCCESS_RESULT")){
+//			return Response.accepted().build();
+//		}
+//		return Response.; //Verweis auf eine html-Seite
 
+		return gd.login(email, password);
+	}
+
+	@POST
+	@Path("/login/logout")
+	@Produces(MediaType.TEXT_PLAIN)
+	public void logout(){
+		gd.logout();
+	}
+	
 	@OPTIONS
 	@Path("/guards")
 	@Produces(MediaType.APPLICATION_XML)
 	public String getSupportedOperations() {
 		return "<operations>GET, PUT, POST, DELETE</operations>";
 	}
-	
-	
 }
