@@ -1,4 +1,4 @@
-package com.github.rep0sit;
+package com.repo;
 
 import java.util.HashMap;
 import java.util.HashSet;

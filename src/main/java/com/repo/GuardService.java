@@ -1,4 +1,4 @@
-package com.github.rep0sit;
+package com.repo;
 
 import java.io.IOException;
 import java.net.URI;
@@ -21,8 +21,8 @@ public class GuardService {
 //	private static final String FAILURE_RESULT = "<result>failure</result>";
 
 	@GET
-	@Path("/guards")
-	@Produces(MediaType.TEXT_XML)
+	@Path("guards")
+	@Produces(MediaType.TEXT_PLAIN)
 	public String getAllGuards() {
 		String ausgabe = "";
 		for(Guard g : gd.getAllGuards())		{
