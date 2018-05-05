@@ -1,4 +1,4 @@
-package com.repo;
+package com.github.rep0sit;
 
 import java.io.IOException;
 import java.net.URI;
