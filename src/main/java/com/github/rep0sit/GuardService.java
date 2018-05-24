@@ -21,12 +21,12 @@ public class GuardService {
 //	private static final String FAILURE_RESULT = "<result>failure</result>";
 
 	@GET
-	@Path("guards")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/guards")
+	@Produces(MediaType.TEXT_HTML)
 	public String getAllGuards() {
 		String ausgabe = "";
 		for(Guard g : gd.getAllGuards())		{
-			ausgabe += "ID: "+g.getId() +" -- Name: "+g.getVorname() + " " + g.getNachname() + " -- Email:"+ g.getEmail() +"<br />";
+			ausgabe += "ID: "+g.getId() +" -- Name: "+g.getVorname() + " " + g.getNachname() + " -- Email:"+ g.getEmail() +"<br/>";
 		}
 		return ausgabe;
 	}
@@ -39,7 +39,7 @@ public class GuardService {
 	}
 
 	@GET
-	@Path("addnewguard")
+	@Path("/addnewguard")
 	@Produces("application/json;charset=UTF-8")
 	public Response createGuard(@QueryParam("vorname") String vorname, @QueryParam("nachname") String nachname,
 			@QueryParam("email") String email, @QueryParam("password") String password, @QueryParam("id") int id)
@@ -49,15 +49,15 @@ public class GuardService {
 	}
 	
 	@GET
-	@Path("login")
+	@Path("/login")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.TEXT_HTML)
 	public String login(@QueryParam("email") String email,@QueryParam("password") String password){
 		return gd.login(email, password) + " --> "+email+" is logged.";
 	}
 
 	@GET
-	@Path("logout")
+	@Path("/logout")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String logout(@QueryParam("email") String email){
 		return gd.logout(email);
